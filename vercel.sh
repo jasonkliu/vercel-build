@@ -7,29 +7,25 @@
 
 set -ex
 
+check_diff() {
+    # git diff HEAD^ HEAD -- ./backend/
+    # [ -n "$(git diff HEAD^ HEAD -- ./backend/)" ] && echo "yes"
+    # echo $?
+    echo $PWD
+    git diff HEAD^ HEAD -- . ":!./backend"
+    echo $?
+}
+
+
 cd 1_onlyfolder/
-git diff HEAD^ HEAD -- ./backend/
-[ -n "$(git diff HEAD^ HEAD -- ./backend/)" ] && echo "yes"
-echo $?
-git diff HEAD^ HEAD -- . ":!./backend"
-echo $?
+check_diff
 cd ../
 
-echo "abc"
-
 cd 2_outsidefolder/
-git diff HEAD^ HEAD -- ./backend/
-[ -n "$(git diff HEAD^ HEAD -- ./backend/)" ] && echo "yes"
-echo $?
-git diff HEAD^ HEAD -- . ":!./backend"
-echo $?
+check_diff
 cd ../
 
 cd 3_both/
-git diff HEAD^ HEAD -- ./backend/
-[ -n "$(git diff HEAD^ HEAD -- ./backend/)" ] && echo "yes"
-echo $?
-git diff HEAD^ HEAD -- . ':!./backend'
-echo $?
+check_diff
 cd ../
 
