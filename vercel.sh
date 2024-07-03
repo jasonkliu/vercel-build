@@ -17,8 +17,10 @@ check_diff() {
     output=$(git diff HEAD^ HEAD -- . ":!./backend")
     if [ -n "$output" ]; then
         echo 1
+        # return 1
     else
         echo 0
+        # return 0
     fi
 }
 
